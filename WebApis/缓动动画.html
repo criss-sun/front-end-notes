@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+
+    div {
+      position: absolute;
+      top: 50px;
+      left: 0;
+      width: 50px;
+      height: 50px;
+      background-color: pink;
+    }
+  </style>
+</head>
+
+<body>
+  <button class="btn500">点击移动到500</button>
+  <button class="btn800">点击移动到800</button>
+  <div></div>
+  <script>
+    function animate(obj, target, callback) {
+      obj.timer && clearInterval(obj.timer)
+      obj.timer = setInterval(function () {
+        var step = (target - obj.offsetLeft) / 10
+        step = step > 0 ? Math.ceil(step) : Math.floor(step)
+        if (obj.offsetLeft === target) { 
+          clearInterval(obj.timer) 
+          callback && callback()
+        }
+        obj.style.left = obj.offsetLeft + step + 'px'
+      }, 100)
+    }
+    var div = document.querySelector('div')
+    var btn500 = document.querySelector('.btn500')
+    var btn800 = document.querySelector('.btn800')
+    btn500.addEventListener('click', function () {
+      animate(div, 500, function() {
+        console.log(123);
+      })
+    })
+    btn800.addEventListener('click', function () {
+      animate(div, 800)
+    })
+
+  </script>
+</body>
+
+</html>

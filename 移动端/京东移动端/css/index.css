@@ -1,0 +1,127 @@
+body {
+  width: 100%;
+  margin: 0 auto;
+  min-width: 320px;
+  max-width: 1024px;
+  line-height: 1.5;
+  font-size: 14px;
+  background-color: #fff;
+  height: 3000px;
+}
+
+img {
+  vertical-align: middle;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.search-bar {
+  overflow: hidden;
+  position: sticky;
+  top: 0;
+  left: 0;
+  min-width: 320px;
+  max-width: 1024px;
+  height: 44px;
+  background-color: #e43130;
+}
+
+.search-menu,
+.search-login {
+  position: absolute;
+  top: 0;
+  width: 40px;
+  height: 100%;
+}
+
+.search-menu {
+  left: 0; 
+}
+.search-menu::after {
+  display: inline-block;
+  content: "";
+  width: 20px;
+  height: 20px;
+  background: url(../images/menu.png) no-repeat center;
+  background-size: 100% 100%;
+  margin: 12px 0 0 12px;
+}
+
+.search-login {
+  right: 0;
+  line-height: 44px;
+}
+
+.search-login::after {
+  content: "登录";
+  color: #fff;
+}
+
+.search-input {
+  overflow: hidden;
+  margin: 7px 50px;
+  border-radius: 22px;
+  height: 30px;
+  background-color: #fff;
+}
+
+.jd-icon {
+  float: left;
+  margin: 8px 0 0 15px;
+  width: 20px;
+  height: 15px;
+  background: url(../images/jd.png) no-repeat;
+  background-size: 100% 100%; 
+}
+
+.jd-icon::after {
+  display: block;
+  padding-left: 26px;
+  content: "";
+  height: 15px;
+  border-right: 1px solid #dddddd;
+}
+
+.search-icon {
+  float: left;
+  margin: 8px 0 0 13px;
+  width: 18px;
+  height: 15px;
+  background: url(../images/jd-sprites.png) no-repeat -81px 0;
+  background-size: 200px 200px;
+}
+
+.main-content {
+  position: relative;
+  height: 140px;
+  background-color: pink;
+}
+
+.top-background {
+  height: 86px;
+  background-color: #d53324;
+  border-radius: 0 0 12px 12px;
+}
+
+.slider ul li{
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 140px;
+  border-radius: 5px;
+  margin: 0 13px;
+}
+
+.slider ul li a img {
+  border-radius: 10px;
+  width: 100%;
+  height: 100%;
+}
+
+.point {
+  
+}

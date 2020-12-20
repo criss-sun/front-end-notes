@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="vue.js"></script>
+
+</head>
+
+<body>
+  <div id="app">
+    <input type="text" v-model.trim.lazy="uname">{{msg}}
+  </div>
+  <script>
+
+    const app = new Vue({
+      el: '#app',
+      data: {
+        data: ['徐毅叶', '黑叶猴'],
+        uname: '',
+        msg: ''
+      },
+      methods: {
+        checkName(uname) {
+          setTimeout(function () {
+            this.data.some(function(item) {
+              if (uname == item) {
+                this.msg = '用户名已存在'
+                return true
+              }
+              else if (uname == '') {
+                this.msg = ''
+              }
+              else {
+                this.msg = '用户名可用'
+              }
+            }.bind(this))
+          }.bind(this), 1000);
+        }
+      },
+      watch: {
+        uname(val) {
+          this.checkName(val)
+          this.msg = '正在查询是否有重复用户名...'
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

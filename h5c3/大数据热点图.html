@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    @keyframes move {
+      0% {}
+
+      33% {
+        width: 20px;
+        height: 20px;
+      }
+
+      66% {
+        width: 30px;
+        height: 30px;
+      }
+      100% {
+        width: 40px;
+        height: 40px;
+        /* opacity: 0; */
+      }
+    }
+
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+
+    .box {
+      overflow: hidden;
+      margin: 100px auto;
+      width: 800px;
+      height: 600px;
+      background-color: #303330;
+    }
+
+    .point {
+      position: relative;
+      width: 12px;
+      height: 12px;
+      background-color: #038efa;
+      border-radius: 50%;
+      margin: 295px auto;
+    }
+
+    .box .point div[class^="border"] {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 12px;
+      height: 12px;
+      box-shadow: 0 0 4px #038efa;
+      border-radius: 50%;
+      animation: move 1s linear infinite;
+    }
+
+    .box .point div[class^="border2"] {
+      animation-delay: 0.5s;
+    }
+
+    .box .point div[class^="border3"] {
+      animation-delay: 1s;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box">
+    <div class="point">
+      <div class="border1"></div>
+      <div class="border2"></div>
+      <div class="border3"></div>
+    </div>
+  </div>
+</body>
+
+</html>

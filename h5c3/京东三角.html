@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  * {
+    padding: 0;
+    margin: 0;
+  }
+
+  div {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin: 100px auto;
+    background-color: skyblue;
+  }
+
+  div::after {
+    position: absolute;
+    top: -20px;
+    left: calc(50% - 10px);
+    content: '';
+    width: 0;
+    height: 0;
+    border: 10px solid transparent;
+    border-bottom-color: blue;
+  }
+</style>
+<body>
+  <div></div>
+</body>
+</html>

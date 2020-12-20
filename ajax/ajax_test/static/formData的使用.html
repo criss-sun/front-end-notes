@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <form id="form">
+    <input type="text" name="username">
+    <input type="password" name="password">
+    <input type="button" value="提交" id="btn">
+  </form>
+  <script>
+    const form = document.querySelector('#form')
+    const btn = document.querySelector('#btn')
+    btn.addEventListener('click', function () {
+      const formData = new FormData(form)
+      const xhr = new XMLHttpRequest()
+      xhr.open('post', 'http://127.0.0.1:8000/ajax1/')
+      xhr.send(formData)
+      xhr.addEventListener('load', function () {
+        if (xhr.status == 200) {
+          console.log(xhr.responseText);
+        }
+      })
+    })
+  </script>
+</body>
+
+</html>

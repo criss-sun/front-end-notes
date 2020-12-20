@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    var obj = {
+      id: 1,
+      name: 'andy',
+      msg: {
+        age: 18
+      }
+    }
+
+    o = {}
+    function deepCopy(o, obj) {
+      for (var i in obj) {
+        if (obj[i] instanceof Object) {
+          o[i] = {}
+          deepCopy(o[i], obj[i])
+        }
+        else {
+           o[i] = obj[i]
+          }
+      }
+    }
+    deepCopy(o, obj)
+    console.log(o);
+  </script>
+</body>
+
+</html>

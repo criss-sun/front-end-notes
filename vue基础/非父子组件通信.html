@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <monkey></monkey>
+    <monkey-king></monkey-king>
+  </div>
+  <script>
+    const hub = new Vue()
+    Vue.component('monkey', {
+      data() {
+        return {
+          name: '黑叶猴',
+          flag: true
+        }
+      },
+      template: `
+      <div>
+        {{name}}
+        <button @click="monkeyHandle">发送事件</button>
+        </div>
+      `,
+      methods: {
+        monkeyHandle() {
+          hub.$emit('changeMonkeyKing',123)
+        }
+      },
+      beforeCreate() {
+        hub.$on('changeMonkey', () => {
+          if (this.flag) this.name = '白叶猴'
+          else this.name = '黑叶猴'
+          this.flag = !this.flag
+          // hub.$off('changeMonkey')
+        })
+      }
+    })
+    Vue.component('monkey-king', {
+      data() {
+        return {
+          name: '白叶猴',
+          flag: true
+        }
+      },
+      template: `
+      <div>
+        {{name}}
+        <button @click="monkeyKingHandle">发送事件</button>
+        </div>
+      `,
+      methods: {
+        monkeyKingHandle() {
+          hub.$emit('changeMonkey')
+        }
+      },
+      beforeCreate() {
+        hub.$on('changeMonkeyKing', (e) => {
+          console.log(e);
+          if (this.flag) this.name = '黑叶猴'
+          else this.name = '白叶猴'
+          this.flag = !this.flag
+          // hub.$off('changeMonkeyKing')
+        })
+      }
+    })
+    const app = new Vue({
+      el: '#app',
+      data: {
+        msg: ''
+      }
+    })
+  </script>
+</body>
+
+</html>

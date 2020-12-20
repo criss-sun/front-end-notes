@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+
+    .box {
+      width: 500px;
+      margin: 100px auto;
+    }
+
+    .tip {
+      visibility: hidden;
+      position: relative;
+      width: 173px;
+      height: 30px;
+      line-height: 30px;
+      font-size: 24px;
+      border: 1px solid #ccc;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+      margin-bottom: 5px;
+    }
+
+    .tip::before {
+      position: absolute;
+      content: '';
+      left: 20px;
+      bottom: -10px;
+      width: 0;
+      height: 0;
+      border: 5px solid #ffffff;
+      border-color: transparent;
+      border-top-color: #ffffff;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box">
+    <div class="tip"></div>
+    <input type="text">
+  </div>
+  <script>
+    var ipt = document.querySelector('input')
+    var tip = document.querySelector('.tip')
+    ipt.addEventListener('keyup', function () {
+      if (this.value) {
+        tip.style.visibility = 'visible'
+        tip.innerHTML = this.value
+      } else {
+        tip.style.visibility = 'hidden'
+      }
+    })
+  </script>
+</body>
+
+</html>

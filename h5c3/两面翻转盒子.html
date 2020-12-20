@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <style>
+    body {
+      perspective: 500px;
+      
+    }
+
+    .box {
+      position: relative;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      margin: 100px auto;
+      transition: all 1s;
+      transform-style: preserve-3d;
+    }
+
+    .box div {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 200px;
+    }
+
+    .box .pink {
+      background-color: pink;
+    }
+
+    .box .purple {
+      background-color: purple;
+      transform: rotateY(180deg);
+    }
+
+    .box:hover {
+      transform: rotateY(180deg);
+    }
+
+  </style>
+</head>
+<body>
+  <div class="box">
+    <div class="pink">徐毅叶</div>
+    <div class="purple">黑叶猴</div>
+  </div>
+</body>
+</html>

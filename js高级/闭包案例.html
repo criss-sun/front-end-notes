@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <button>点我</button>
+  <button>点我</button>
+  <button>点我</button>
+  <button>点我</button>
+  <button>点我</button>
+  <script>
+    var btns = document.querySelectorAll('button')
+    for (var i = 0; i < btns.length; i++) {
+      for (var i = 0; i < btns.length; i++) {
+        (function (i) {
+          btns[i].addEventListener('click', function () {
+            console.log(i);
+          })
+        })(i)
+      }
+    }
+  </script>
+</body>
+
+</html>

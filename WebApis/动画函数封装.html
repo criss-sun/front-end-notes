@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+
+    div {
+      position: absolute;
+      top: 50px;
+      left: 0;
+      width: 50px;
+      height: 50px;
+      background-color: pink;
+    }
+  </style>
+</head>
+
+<body>
+  <button>点击移动</button>
+  <div></div>
+  <script>
+    function animate(obj, target) {
+      console.log(obj.timer);
+      obj.timer && clearInterval(obj.timer)
+      obj.timer = setInterval(function () {
+        if (obj.offsetLeft === target) clearInterval(obj.timer)
+        obj.style.left = ++obj.offsetLeft + 'px'
+      }, 10)
+    }
+    var div = document.querySelector('div')
+    var btn = document.querySelector('button')
+    btn.addEventListener('click', function () {
+      animate(div, 500)
+    })
+
+  </script>
+</body>
+
+</html>

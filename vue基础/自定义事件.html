@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <span :style="{fontSize: fontSize + 'px'}">徐毅叶是黑叶猴</span>
+    <son @add-font-size="addFontSizeHandle($event)"></son>
+  </div>
+
+  <script>
+
+    const app = new Vue({
+      el: '#app',
+      data: {
+        fontSize: 2
+      },
+      methods: {
+        addFontSizeHandle(e) {
+          console.log(e);
+          this.fontSize += 6
+        }
+      },
+      components: {
+        'son': {
+          props: [],
+          template: `
+          <div>
+            <button @click="$emit('add-font-size', 'param')">发送自定义事件</button>
+          </div>
+          `
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

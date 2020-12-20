@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    const xhr = new XMLHttpRequest()
+    xhr.open('post', 'http://127.0.0.1:8000/ajax1/')
+    xhr.setRequestHeader('Content-Type', 'application/json')
+    let json = { id: 1 }
+    json = JSON.stringify(json)
+    xhr.send(json)
+    xhr.addEventListener('load', function() {
+      console.log(xhr.responseText);
+    })
+  </script>
+</body>
+
+</html>

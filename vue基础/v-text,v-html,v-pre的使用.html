@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <div v-text="text"></div>
+    <div v-html="html"></div>
+    <!-- 不会解析mustache语法,显示原始内容 -->
+    <div v-pre>{{text}}</div>
+  </div>
+  <script src="vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        text: 'v-text可以代替mustache语法',
+        html: '<h1>v-html可以渲染标签</h1><h1>建议只渲染本网站数据时使用,渲染第三方网站数据不安全</h1>'
+      }
+    })
+  </script>
+</body>
+</html>

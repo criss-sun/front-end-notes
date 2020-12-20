@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="vue.js"></script>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+
+    .box {
+      margin: 0 auto;
+      width: 650px;
+      text-align: center;
+    }
+
+    .box h1 {
+      width: 200px;
+      margin: 34px auto;
+    }
+
+    .search {
+      background-color: #f5dbae;
+      height: 46px;
+      line-height: 46px;
+      border-bottom: 2px solid #e2d4a0;
+    }
+
+    .header {
+      background-color: #f5dbae;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    table tr {
+      height: 46px;
+      line-height: 46px;
+    }
+
+    table,
+    td {
+      border: 1px dotted #f5dbae;
+    }
+
+    input {
+      width: 208px;
+      height: 23px;
+    }
+
+    button {
+      margin-left: 8px;
+      width: 50px;
+      height: 23px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <div class="box">
+      <h1>图书管理</h1>
+      <div class="search">
+        编号: <input type="text" v-model.trim.lazy="id" :disabled="idDisabled"> 名称: <input type="text" v-model.trim.lazy="bookName"><button
+          @click="addBook">提交</button>
+      </div>
+      <div>
+        <table>
+          <thead>
+            <tr class="header">
+              <th>编号</th>
+              <th>名称</th>
+              <th>时间</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="item in data" :key="item.id">
+              <td>{{item.id}}</td>
+              <td>{{item.bookName}}</td>
+              <td>{{item.updateTime | format('yyyy-MM-dd')}}</td>
+              <td><a href="#" @click="editBook(item.id)">修改</a> | <a href="#" @click="removeBook(item.id)">删除</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        data: [],
+        id: '',
+        bookName: '',
+        idDisabled: false,
+        editMode: false
+      },
+      created() {
+        this.data = [
+          { id: 1, bookName: '三国演义', updateTime: 1577836800000 },
+          { id: 2, bookName: '水浒传', updateTime: 1577836800000 },
+          { id: 3, bookName: '红楼梦', updateTime: 1577836800000 },
+          { id: 4, bookName: '西游记', updateTime: 1577836800000 },
+        ]
+      },
+      methods: {
+        addBook() {
+          if (this.editMode) {
+            const index = this.data.findIndex(function (item) {
+              return this.id == item.id
+            }.bind(this))
+            this.data[index].bookName = this.bookName
+            this.data[index].updateTime = +new Date()
+            this.editMode = false
+            this.idDisabled = false
+          } else {
+            const sameBook = this.data.some(function (item) {
+              return item.id == this.id
+            }.bind(this))
+            if (!sameBook) {
+              const book = {}
+              book.id = this.id
+              book.bookName = this.bookName
+              book.updateTime = +new Date()
+              this.data.push(book)
+            }
+          }
+          this.id = ''
+          this.bookName = ''
+        },
+        removeBook(id) {
+          const index = this.data.findIndex(function (item) {
+            return item.id == id
+          })
+          this.data.splice(index, 1)
+        },
+        editBook(id) {
+          this.editMode = true
+          this.idDisabled = true
+          this.id = id
+          const index = this.data.findIndex(function (item) {
+            return item.id == id
+          })
+          this.bookName = this.data[index].bookName
+        }
+      },
+      filters: {
+        format(val, fmt) {
+          let date = new Date(val)
+          var o = {
+            "M+": date.getMonth() + 1, //月份
+            "d+": date.getDate(), //日
+            "h+": date.getHours(), //小时
+            "m+": date.getMinutes(), //分
+            "s+": date.getSeconds(), //秒
+            "q+": Math.floor((date.getMonth() + 3) / 3), //季度
+            "S": date.getMilliseconds() //毫秒
+          };
+          if (/(y+)/.test(fmt)) {
+            fmt = fmt.replace(RegExp.$1, (date.getFullYear() + "").substr(4 - RegExp.$1.length));
+          }
+          for (var k in o) {
+            if (new RegExp("(" + k + ")").test(fmt)) {
+              fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+            }
+          }
+          return fmt;
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <!-- 使用v-bind绑定属性时,如果输入的值可以转换为对应类型会转换为该类型,不使用v-bind会当做字符串处理. 如果输入的值本来就是字符串又加了v-bind,同时父组件data中找不到该变量,会报错 -->
+    <monkey monkey="黑叶猴"></monkey>
+  </div>
+  <script>
+
+    const app = new Vue({
+      el: '#app',
+      data: {
+        msg: ''
+      },
+      components: {
+        'monkey': {
+          // 其实就是monkey标签的属性
+          props: ['monkey'],
+          template: `<div>{{monkey}}</div>`
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

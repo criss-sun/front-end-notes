@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    div {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 96px;
+      height: 80px;
+      background: url(./images/angel.gif) no-repeat;
+    }
+  </style>
+</head>
+
+<body>
+  <div>
+  </div>
+  <script>
+    var angel = document.querySelector('div')
+    document.addEventListener('mousemove', function (e) {
+      angel.style.top = e.pageY + 'px'
+      angel.style.left = e.pageX + 'px'
+    })
+  </script>
+</body>
+
+</html>

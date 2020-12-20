@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    div {
+      margin: 200px;
+    }
+
+    span {
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+      background-color: #333;
+      font-size: 20px;
+      color: #fff;
+      text-align: center;
+      line-height: 40px;
+    }
+  </style>
+</head>
+
+<body>
+  <div>
+    <span class="hour">00</span>
+    <span class="minute">00</span>
+    <span class="second">00</span>
+  </div>
+  <script>
+    var hour = document.querySelector('.hour')
+    var minute = document.querySelector('.minute')
+    var second = document.querySelector('.second')
+    getTime()
+    function getTime() {
+      var dateTime = '2020-11-24 00:00:00'
+      var nowTime = +new Date()
+      var featureTime = +new Date(dateTime)
+      var timeDelta = (featureTime - nowTime) / 1000
+      var hours = parseInt(timeDelta / 60 / 60 % 24)
+      hours = hours < 10 ? '0' + hours : hours
+      var minutes = parseInt(timeDelta / 60 % 60)
+      minutes = minutes < 10 ? '0' + minutes : minutes
+      var seconds = parseInt(timeDelta % 60)
+      seconds = seconds < 10 ? '0' + seconds : seconds
+      hour.innerHTML = hours
+      minute.innerHTML = minutes
+      second.innerHTML = seconds
+    }
+    setInterval(getTime, 1000)
+  </script>
+</body>
+
+</html>

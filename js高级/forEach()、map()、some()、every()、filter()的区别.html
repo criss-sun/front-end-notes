@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // map:有返回值,把原数组经过处理后返回新数组
+    // var arr = [1, 2, 3, 4, 5]
+    // var newArr = arr.map(function(item) {
+    //   return item * 2
+    // })
+    // console.log(newArr); // [2, 4, 6, 8, 10]
+    // var arr = [1, 2, 3, 4, 5]
+    // var newArr = arr.filter(function (item) {
+    //   return item > 3
+    // })
+    // console.log(newArr);
+    // var arr = [1, 2, 3, 4, 5]
+    // var newArr = arr.some(function (item) {
+    //   return item > 4
+    // })
+    // console.log(newArr);
+    var arr = [2, 3, 4, 5]
+    var newArr = arr.every(function (item) {
+      return item > 1
+    })
+    console.log(newArr);
+  </script>
+</body>
+
+</html>

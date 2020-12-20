@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      height: 3000px;
+    }
+
+    div {
+      position: fixed;
+      right: 0;
+      bottom: 200px;
+      width: 50px;
+      height: 50px;
+      background-color: pink;
+    }
+  </style>
+</head>
+
+<body>
+  <div></div>
+  <script>
+    function animate(obj, target, callback) {
+      obj.timer && clearInterval(obj.timer)
+      obj.timer = setInterval(function () {
+        var step = (target - pageYOffset) / 10
+        step = step > 0 ? Math.ceil(step) : Math.floor(step)
+        if (pageYOffset === target) {
+          clearInterval(obj.timer)
+          callback && callback()
+        }
+        scroll(0, pageYOffset + step)
+      }, 10)
+    }
+    var div = document.querySelector('div')
+    div.addEventListener('click', function () {
+      animate(window, 0)
+    })
+  </script>
+</body>
+
+</html>

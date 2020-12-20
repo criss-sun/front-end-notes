@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="vue.js"></script>
+
+</head>
+
+<body>
+  
+  <div id="app">
+    <son v-slot="scope">
+      <!-- scope是slot中传过来的包裹了obj的对象 -->
+      {{scope.obj.type}}
+    </son>
+  </div>
+  <script>
+
+    const app = new Vue({
+      el: '#app',
+      data: {
+        msg: ''
+      },
+      components: {
+        'son': {
+          data() {
+            return {
+              obj: {
+                name: '徐毅叶',
+                type: '黑叶猴'
+              },
+              name: 'aaa'
+            }
+          },
+          template: `
+          <div>
+            <!-- :obj="obj"是插槽prop -->
+            <slot :obj="obj">{{obj.name}}</slot>
+          </div>
+          `
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

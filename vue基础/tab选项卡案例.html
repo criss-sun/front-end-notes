@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="vue.js"></script>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    .fruit-name {
+      height: 66px;
+    }
+
+    .fruit-name li {
+      float: left;
+      width: 150px;
+      height: 66px;
+      text-align: center;
+      line-height: 66px;
+      border: 1px solid #494def;
+    }
+
+    .isActive {
+      background-color: #ffa300;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <div>
+      <ul class="fruit-name">
+        <li v-for="(item,index) in fruits" :key="item.id" @click="activeIndex = index" :class="{isActive: activeIndex == index}">{{item.name}}</li>
+      </ul>
+    </div>
+    <div>
+      <ul>
+        <li v-if="index == activeIndex" v-for="(item,index) in fruits" :key="item.id"><img :src="item.img" :alt="item.name">
+        </li>
+      </ul>
+    </div>
+  </div>
+  <script>
+
+    const app = new Vue({
+      el: '#app',
+      data: {
+        // fruitName: 'apple',
+        activeIndex: 0,
+        fruits: [
+          { id: 1, name: 'apple', img: './img/Apple.jpg' },
+          { id: 2, name: 'orange', img: './img/orange.jpg' },
+          { id: 3, name: 'lemon', img: './img/lemon.jpg' }
+        ]
+      }
+    })
+  </script>
+</body>
+
+</html>

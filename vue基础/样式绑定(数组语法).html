@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="vue.js"></script>
+  <style>
+    .red {
+      color: red;
+    }
+
+    .blue {
+      color: blue;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <div :class="[isRed, isBlue]">徐毅叶是黑叶猴</div>
+    <button @click="changeColor">切换样式</button>
+  </div>
+  <script>
+
+    const app = new Vue({
+      el: '#app',
+      data: {
+        msg: '',
+        isRed: 'red',
+        isBlue: '',
+        flag: true
+      },
+      methods: {
+        changeColor() {
+          if (this.flag) {
+            this.isBlue = 'blue'
+            this.isRed = ''
+          } else {
+            this.isBlue = ''
+            this.isRed = 'red'
+          }
+          this.flag = !this.flag
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

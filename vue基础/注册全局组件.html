@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="vue.js"></script>
+
+</head>
+
+<body>
+
+  <div id="app">
+    <div>{{msg}}</div>
+    <monkey></monkey>
+    <monkey-king></monkey-king>
+  </div>
+  <script>
+    Vue.component('monkey', {
+      data() {
+        return {
+          name: '徐毅叶'
+        }
+      },
+      template: `
+      <div>{{name}}</div>
+      `
+    })
+    const app = new Vue({
+      el: '#app',
+      data: {
+        msg: ''
+      },
+      components: {
+        'monkey-king': {
+          data() {
+            return {
+              name: '猴子王'
+            }
+          },
+          template: `
+      <div>{{name}}</div>
+      `
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .progress {
+      position: relative;
+      overflow: hidden;
+      margin-top: 10px;
+      width: 300px;
+      height: 20px;
+      border-radius: 10px;
+      border: 1px solid #333;
+    }
+
+    .progress-bar {
+      height: 20px;
+      width: 0;
+      background-color: #2f77bb;
+    }
+
+    .percent {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    #avatar {
+      display: none;
+      width: 100px;
+      height: 100px;
+    }
+  </style>
+</head>
+
+<body>
+  <form id="form">
+    <input type="file" id="file">
+  </form>
+  <div class="progress">
+    <div class="percent"></div>
+    <div class="progress-bar"></div>
+  </div>
+  <img id="avatar">
+  <script>
+    const form = document.querySelector('#form')
+    const file = document.querySelector('#file')
+    const progress_bar = document.querySelector('.progress-bar')
+    const percent = document.querySelector('.percent')
+    const avatar = document.querySelector('#avatar')
+    file.addEventListener('change', function () {
+      const formData = new FormData(form)
+      formData.append('img', this.files[0])
+      const xhr = new XMLHttpRequest()
+      xhr.open('post', 'http://127.0.0.1:8000/upload/')
+      xhr.upload.addEventListener('progress', function (e) {
+        progress_bar.style.width = (e.loaded / e.total) * 100 + '%'
+        percent.innerHTML = ((e.loaded / e.total) * 100).toFixed(2) + '%'
+      })
+      xhr.send(formData)
+      xhr.addEventListener('load', function () {
+        if (xhr.status == 200) {
+          const path = JSON.parse(xhr.responseText).path
+          avatar.style.display = 'block'
+          avatar.src = 'http://127.0.0.1:8000/' + path
+        }
+      })
+    })
+  </script>
+</body>
+
+</html>

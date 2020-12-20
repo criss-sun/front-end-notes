@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+
+    .nav {
+      width: 1000px;
+      height: 500px;
+      margin: 200px auto;
+      text-align: center;
+      line-height: 60px;
+      
+    }
+
+    .nav ul li {
+      float: left;
+      width: 160px;
+      height: 60px;
+      margin-right: 5px;
+      list-style: none;
+      perspective: 500px;
+    }
+
+    .box {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transition: all 1s;
+      transform-style: preserve-3d;
+    }
+
+    .pink,
+    .purple {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 160px;
+      height: 60px;
+    }
+
+    .pink {
+      z-index: 1;
+      background-color: pink;
+      transform: translateZ(30px);
+    }
+
+    .purple {
+      background-color: purple;
+      transform: translateY(30px) rotateX(-90deg);
+
+    }
+
+    .box:hover {
+      transform: rotateX(90deg);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="nav">
+    <ul>
+      <li>
+        <div class="box">
+          <div class="pink">黑叶猴</div>
+          <div class="purple">徐毅叶</div>
+        </div>
+      </li>
+      <li>
+        <div class="box">
+          <div class="pink">黑叶猴</div>
+          <div class="purple">徐毅叶</div>
+        </div>
+      </li>
+      <li>
+        <div class="box">
+          <div class="pink">黑叶猴</div>
+          <div class="purple">徐毅叶</div>
+        </div>
+      </li>
+      <li>
+        <div class="box">
+          <div class="pink">黑叶猴</div>
+          <div class="purple">徐毅叶</div>
+        </div>
+      </li>
+      <li>
+        <div class="box">
+          <div class="pink">黑叶猴</div>
+          <div class="purple">徐毅叶</div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</body>
+
+</html>

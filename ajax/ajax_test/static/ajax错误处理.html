@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <button>发送请求</button>
+  <script>
+    const btn = document.querySelector('button')
+    btn.addEventListener('click', function () {
+      const xhr = new XMLHttpRequest()
+      xhr.open('get', 'http://127.0.0.1:8000/ajax1/')
+      xhr.addEventListener('readystatechange', function () {
+        if (xhr.readyState == 4) {
+          console.log(123);
+        }
+      })
+      xhr.send()
+      xhr.addEventListener('error', function () {
+        alert('断网啦')
+      })
+    })
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    function countPrice(km, isJam) {
+      if (km <= 3) {
+        isJam = isJam ? 10 : 0
+        return 13 + isJam
+      }
+      else {
+        var start = 13
+        var km_1 = 5
+        isJam = isJam ? 10 : 0
+        var total = start + (km - 3)* km_1 + isJam
+        return total
+      }
+
+    }
+    console.log(countPrice(10, true));
+  </script>
+</body>
+
+</html>

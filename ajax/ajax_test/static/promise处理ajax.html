@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    function p() {
+      return new Promise(function (resolve, reject) {
+        const xhr = new XMLHttpRequest()
+        xhr.addEventListener('readystatechange', function () {
+          if (xhr.readyState != 4) return
+          if (xhr.readyState == 4 && xhr.status == 200) {
+            resolve(xhr.responseText)
+          } else {
+            reject('请求出错')
+          }
+        })
+        xhr.open('get', 'http://127.0.0.1:8000/ajax/')
+        xhr.send()
+      })
+    }
+    p().then(function (response) {
+      console.log(response);
+    }).catch(function (err) {
+      console.log(err);
+    })
+  </script>
+</body>
+
+</html>

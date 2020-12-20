@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <button>发送jsonp请求</button>
+  <script>
+    function jsonp(options) {
+      let params = ''
+      if (options.data) {
+        for (let i in options.data) {
+          params += '&' + i + '=' + options.data[i]
+        }
+      }
+      const fnName = 'fn' + Math.random().toString().replace('.', '')
+      window[fnName] = options.success
+      const script_tag = document.createElement('script')
+      script_tag.src = options.url + '?callback=' + fnName + params
+      document.body.appendChild(script_tag)
+      script_tag.addEventListener('load', function () {
+        document.body.removeChild(script_tag)
+      })
+    }
+    const btn = document.querySelector('button')
+    btn.addEventListener('click', function () {
+      jsonp({
+        url: "http://127.0.0.1:8000/jsonp/",
+        success: function (data) {
+          console.log(data);
+        },
+        data: {
+          name: '徐毅叶',
+          age: 27
+        }
+      })
+    })
+  </script>
+</body>
+
+</html>

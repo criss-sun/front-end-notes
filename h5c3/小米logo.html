@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+
+    .logo {
+      display: block;
+      overflow: hidden;
+      position: relative;
+      width: 50px;
+      height: 50px;
+      margin: 100px auto;
+    }
+
+    .logo::before {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      right: 0;
+      top: 0;
+      content: '';
+      background: url(./images/mi-logo.png) no-repeat center #ff6700;
+      transition: all 1s ease;
+    }
+
+    .logo::after {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      left: 100%;
+      top: 0;
+      content: '';
+      background: url(./images/mi-home.png) no-repeat center #ff6700;
+      transition: all 1s ease;
+    }
+
+    .logo:hover::before {
+      right: 100%;
+    }
+
+    .logo:hover::after {
+      left: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <a href="javascript:;" class="logo"></a>
+</body>
+
+</html>

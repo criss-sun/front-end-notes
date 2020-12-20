@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .box {
+      width: 300px;
+      height: 300px;
+      border: 1px solid #222222;
+    }
+
+    .box div {
+      overflow: hidden;
+      position: relative;
+      width: 50px;
+      height: 50px;
+      background-color: #2c6499;
+      margin-left: calc(50% - 25px);
+      margin-top: calc(50% - 25px);
+      
+    }
+
+    .box div::after {
+      content: "";
+      position: absolute;
+      bottom: -100%;
+      right: 0;
+      width: 50px;
+      height: 50px;
+      background-color: pink;
+      transform-origin: left top;
+      transition: all 0.5s;
+    }
+
+    .box:hover div::after {
+      transform: rotate(-90deg);
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <div>
+
+    </div>
+  </div>
+</body>
+</html>

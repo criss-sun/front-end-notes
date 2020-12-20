@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="vue.js"></script>
+
+</head>
+
+<body>
+  <div id="app">
+    <monkey>
+      <!-- v-slot必须在template标签中使用, 除非组件中只有一个默认插槽 -->
+      <template v-slot:male>黑叶猴</template>
+      <template v-slot:female>白叶猴</template>
+      <!-- 没有被包裹在template标签中的内容视为默认插槽 -->
+      不是猴
+      <!-- 默认插槽也可以用template标签包裹 -->
+      <template>不是猴</template>
+      <!-- 默认插槽会带有隐含的名字“default” 这样写的话,没有写v-slot的内容会失效-->
+      <template v-slot:default>不是猴</template>
+    </monkey>
+  </div>
+  <script>
+
+    const app = new Vue({
+      el: '#app',
+      data: {
+        msg: ''
+      },
+      components: {
+        'monkey': {
+          template:`
+          <div>
+            <!-- slot没有传会用默认的 -->
+            <span>徐毅叶是:</span><slot name="male"></slot> 
+            <hr>
+            <span>郭懿妮是:</span><slot name="female"></slot> 
+            <hr>
+            <span>左成发是:</span><slot></slot> 
+            <hr>
+            </div>
+            
+          `
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

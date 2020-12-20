@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    div {
+      box-sizing: border-box;
+      width: 200px;
+      height: 200px;
+      padding: 10px;
+      /* border: 10px solid #cccccc; */
+      background-color: pink;
+    }
+  </style>
+</head>
+<body>
+  <div></div>
+  <script>
+    var div = document.querySelector('div')
+    console.log(div.clientHeight);
+    console.log(div.offsetHeight);
+  </script>
+</body>
+</html>

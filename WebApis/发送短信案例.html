@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div>
+    <input type="number">
+    <button>发送</button>
+  </div>
+  <script>
+    var mobile = document.querySelector('input')
+    var btn = document.querySelector('button')
+    btn.addEventListener('click', function () {
+      this.disabled = true
+      var time = 60
+      var send = setInterval(() =>{
+        time--
+        this.innerHTML = '还剩' + time + '秒再次发送'
+        if (time <= 0) {
+          clearInterval(send)
+          this.innerHTML = '发送'
+          this.disabled = false
+        }
+      }, 1000)
+    })
+  </script>
+</body>
+
+</html>

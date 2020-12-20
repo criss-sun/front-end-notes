@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="vue.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    #app {
+      width: 460px;
+      margin: 0 auto;
+    }
+
+    .header {
+      width: 100%;
+      height: 60px;
+      text-align: center;
+      line-height: 60px;
+      background-color: #a9d3e6;
+    }
+
+    .main {
+      width: 100%;
+      min-height: 430px;
+      background-color: #fff;
+    }
+
+    .main-content {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      width: 100%;
+      height: 80px;
+    }
+
+    .footer {
+      position: relative;
+      width: 100%;
+      height: 60px;
+      line-height: 60px;
+      background-color: #ffcb3e;
+    }
+
+    .balance {
+      position: absolute;
+      top: 5px;
+      right: 15px;
+      width: 120px;
+      height: 50px;
+      background-color: #e9593e;
+      border: 0;
+    }
+
+    .total {
+      font-size: 20px;
+      padding-left: 180px;
+      color: #ee4600;
+      font-weight: 800;
+    }
+
+    .logo {
+      width: 70px;
+      height: 40px;
+    }
+
+    .logo img {
+      width: 100%;
+      height: 100%;
+    }
+
+    .btn {
+      width: 30px;
+      height: 40px;
+    }
+
+    input {
+      width: 60px;
+      height: 40px;
+      text-align: center;
+    }
+
+    .delete {
+      color: red;
+      font-size: 50px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <cart-header></cart-header>
+    <cart-main :obj="obj" @add="add($event)" @sub="sub($event)" @remove="remove($event)" @changenum="changenum($event)">
+    </cart-main>
+    <cart-footer :obj="obj"></cart-footer>
+  </div>
+
+  <script>
+    const app = new Vue({
+      el: '#app',
+      created() {
+        const obj = [
+          {
+            id: 1,
+            logo: './img/TCL logo.png',
+            brand: 'TCL彩电',
+            price: 2000,
+            num: 0
+          },
+          {
+            id: 2,
+            logo: './img/TCL logo.png',
+            brand: 'TCL彩电',
+            price: 2000,
+            num: 0
+          },
+          {
+            id: 3,
+            logo: './img/TCL logo.png',
+            brand: 'TCL彩电',
+            price: 2000,
+            num: 0
+          },
+          {
+            id: 4,
+            logo: './img/TCL logo.png',
+            brand: 'TCL彩电',
+            price: 2000,
+            num: 0
+          },
+          {
+            id: 5,
+            logo: './img/TCL logo.png',
+            brand: 'TCL彩电',
+            price: 2000,
+            num: 0
+          },
+          {
+            id: 6,
+            logo: './img/TCL logo.png',
+            brand: 'TCL彩电',
+            price: 2000,
+            num: 0
+          },
+        ]
+        this.obj = obj
+      },
+      data() {
+        return {
+          obj: [],
+        }
+      },
+      methods: {
+        add(id) {
+          this.obj.some(function (item) {
+            if (item.id == id) {
+              item.num++
+              return true
+            }
+          })
+        },
+        sub(id) {
+          this.obj.some(function (item) {
+            if (item.id == id && item.num !== 0) {
+              item.num--
+              return true
+            }
+          })
+        },
+        remove(id) {
+          const index = this.obj.findIndex(function (item) {
+            return item.id == id
+          })
+          if (index != -1) {
+            this.obj.splice(index, 1)
+          }
+        },
+        changenum(value) {
+          this.obj.some(function (item) {
+            if (item.id == value.id) {
+              item.num = value.num
+              return true
+            }
+          }.bind(this))
+        }
+      },
+      components: {
+        'cart-header': {
+          template: `
+          <div class="header">我的商品</div>
+          `
+        },
+        'cart-main': {
+          props: {
+            obj: Array
+          },
+          template: `
+          <main class="main">
+            <div class="main-content" v-for="item in obj" :key="item.id">
+              <div class="logo"><img :src="item.logo" alt="logo"></div>
+              <span>{{item.brand + ' ¥' + item.price}}</span>
+              <div class="quantity">
+              <button class="btn" @click="$emit('sub', item.id)">-</button>
+              <input type="text" :value="item.num" @blur="$emit('changenum', {id:item.id, num: parseInt($event.target.value)})">
+              <button class="btn" @click="$emit('add', item.id)">+</button>
+              </div>
+              <div class="delete" @click="$emit('remove', item.id)">×</div>
+              </div>
+              </main>
+          `
+        },
+        'cart-footer': {
+          props: {
+            obj: Array
+          },
+          computed: {
+            total() {
+              let totalPrice = 0
+              this.obj.forEach(function (item) {
+                totalPrice += item.num * item.price
+              })
+              return totalPrice
+            }
+          },
+          template: `
+          <div class="footer">
+            <span class="total">总价: {{total}}</span>
+            <button class="balance">结算</button>
+          </div>
+          `
+        },
+      }
+    })
+  </script>
+</body>
+
+</html>
