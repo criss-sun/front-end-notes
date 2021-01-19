@@ -65,158 +65,161 @@
 </head>
 
 <body>
-  <div id="app">
-    <div class="box">
-      <h1>图书管理</h1>
-      <div class="search">
-        编号: <input type="text" v-model.trim.lazy="id" :disabled="idDisabled"> 名称: <input type="text"
-          v-model.trim.lazy="book_name">
-        <button @click="addBook" :disabled="btnDisabled">提交
-        </button>
-      </div>
-      <div>
-        <table>
-          <thead>
-            <tr class="header">
-              <th>编号</th>
-              <th>名称</th>
-              <th>时间</th>
-              <th>操作</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="item in data" :key="item.id">
-              <td>{{ item.id }}</td>
-              <td>{{ item.book_name }}</td>
-              <td>{{ item.update_time | format('yyyy-MM-dd')}}</td>
-              <td><a href="#" @click="editBook(item.id)">修改</a> | <a href="#" @click="removeBook(item.id)">删除</a></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+<div id="app">
+  <div class="box">
+    <h1>图书管理</h1>
+    <div class="search">
+      编号: <input type="text" v-model.trim.lazy="id" :disabled="idDisabled"> 名称: <input type="text"
+                                                                                       v-model.trim.lazy="book_name">
+      <button @click="addBook" :disabled="btnDisabled">提交
+      </button>
+    </div>
+    <div>
+      <table>
+        <thead>
+        <tr class="header">
+          <th>编号</th>
+          <th>名称</th>
+          <th>时间</th>
+          <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr v-for="item in data" :key="item.id">
+          <td>{{ item.id }}</td>
+          <td>{{ item.book_name }}</td>
+          <td>{{ item.update_time | format('yyyy-MM-dd')}}</td>
+          <td><a href="#" @click="editBook(item.id)">修改</a> | <a href="#" @click="removeBook(item.id)">删除</a></td>
+        </tr>
+        </tbody>
+      </table>
     </div>
   </div>
+</div>
 
-  <script>
-    axios.defaults.baseURL = 'http://127.0.0.1:8000/api/'
-    const app = new Vue({
-      el: '#app',
-      data: {
-        data: [],
-        id: '',
-        book_name: '',
-        idDisabled: false,
-        btnDisabled: false,
-        editMode: false
+<script>
+  axios.defaults.baseURL = 'http://127.0.0.1:8000/api/'
+  const app = new Vue({
+    el: '#app',
+    data: {
+      data: [],
+      id: '',
+      book_name: '',
+      idDisabled: false,
+      btnDisabled: false,
+      editMode: false
+    },
+    created() {
+      // this.data = [
+      //   {id: 1, book_name: '三国演义', update_time: 1577836800000},
+      //   {id: 2, book_name: '水浒传', update_time: 1577836800000},
+      //   {id: 3, book_name: '红楼梦', update_time: 1577836800000},
+      //   {id: 4, book_name: '西游记', update_time: 1577836800000},
+      // ]
+      this.getData()
+    },
+    methods: {
+      async getData() {
+        const {data} = await axios.get('books/')
+        this.data = data
+        this.id = this.data[this.data.length - 1].id + 1;
       },
-      created() {
-        // this.data = [
-        //   {id: 1, book_name: '三国演义', update_time: 1577836800000},
-        //   {id: 2, book_name: '水浒传', update_time: 1577836800000},
-        //   {id: 3, book_name: '红楼梦', update_time: 1577836800000},
-        //   {id: 4, book_name: '西游记', update_time: 1577836800000},
-        // ]
-        this.getData()
-      },
-      methods: {
-        async getData() {
-          const { data } = await axios.get('books/')
-          this.data = data
-          this.id = this.data[this.data.length - 1].id + 1;
-        },
-        async addBook() {
-          if (this.editMode) {
-            // const index = this.data.findIndex(function (item) {
-            //   return this.id == item.id
-            // }.bind(this))
-            // this.data[index].book_name = this.book_name
-            // this.data[index].update_time = +new Date()
-            const { data, status } = await axios.put(`books/${this.id}/`, {
-              book_name: this.book_name,
-              update_time: +new Date()
-            })
-            if (status == 200) {
-              this.getData()
-            }
-            this.editMode = false
-            this.idDisabled = false
-          } else {
-            const sameBook = this.data.some(function (item) {
-              return item.id == this.id
-            }.bind(this))
-            if (!sameBook) {
-              const book = {}
-              book.id = this.id
-              book.book_name = this.book_name
-              book.update_time = +new Date()
-              // this.data.push(book)
-              const { data } = await axios.post('/books/', book)
-              this.getData()
-            }
-          }
-          this.id = ''
-          this.book_name = ''
-        },
-        async removeBook(id) {
+      async addBook() {
+        if (this.editMode) {
           // const index = this.data.findIndex(function (item) {
-          //   return item.id == id
-          // })
-          // this.data.splice(index, 1)
-          const { status } = await axios.delete(`books/${id}`)
+          //   return this.id == item.id
+          // }.bind(this))
+          // this.data[index].book_name = this.book_name
+          // this.data[index].update_time = +new Date()
+          const {status} = await axios.put(`books/${this.id}/`, {
+            book_name: this.book_name,
+            update_time: +new Date()
+          })
           if (status == 200) {
             this.getData()
           }
-        },
-        async editBook(id) {
-          this.editMode = true
-          this.idDisabled = true
-          this.id = id
-          // const index = this.data.findIndex(function (item) {
-          //   return item.id == id
-          // })
-          // this.book_name = this.data[index].book_name
-          const { data, status } = await axios.get(`books/${id}`)
-          if (status == 200) {
-            this.book_name = data.book_name
+          this.editMode = false
+          this.idDisabled = false
+        } else {
+          const sameBook = this.data.some(function (item) {
+            return item.id == this.id
+          }.bind(this))
+          if (!sameBook) {
+            const book = {}
+            book.id = this.id
+            book.book_name = this.book_name
+            book.update_time = +new Date()
+            // this.data.push(book)
+            const {status} = await axios.post('/books/', book)
+            if (status == 201) {
+              this.getData()
+            }
           }
         }
+        this.id = ''
+        this.book_name = ''
       },
-      watch: {
-        async book_name(val) {
-          const { status } = await axios.get(`books/book/${val}`)
+      async removeBook(id) {
+        // const index = this.data.findIndex(function (item) {
+        //   return item.id == id
+        // })
+        // this.data.splice(index, 1)
+        const {status} = await axios.delete(`books/${id}/`)
+        if (status == 204) {
+          this.getData()
+        }
+      },
+      async editBook(id) {
+        this.editMode = true
+        this.idDisabled = true
+        this.id = id
+        // const index = this.data.findIndex(function (item) {
+        //   return item.id == id
+        // })
+        // this.book_name = this.data[index].book_name
+        const {data, status} = await axios.get(`books/${id}`)
+        if (status == 200) {
+          this.book_name = data.book_name
+        }
+      }
+    },
+    watch: {
+      async book_name(val) {
+        if (val) {
+          const {status} = await axios.get(`books/book/${val}/`)
           if (status == 204) {
             this.btnDisabled = false
-          }
-          else if (status == 200) {
+          } else if (status == 200) {
             this.btnDisabled = true
           }
         }
-      },
-      filters: {
-        format(val, fmt) {
-          let date = new Date(val)
-          var o = {
-            "M+": date.getMonth() + 1, //月份
-            "d+": date.getDate(), //日
-            "h+": date.getHours(), //小时
-            "m+": date.getMinutes(), //分
-            "s+": date.getSeconds(), //秒
-            "q+": Math.floor((date.getMonth() + 3) / 3), //季度
-            "S": date.getMilliseconds() //毫秒
-          };
-          if (/(y+)/.test(fmt)) {
-            fmt = fmt.replace(RegExp.$1, (date.getFullYear() + "").substr(4 - RegExp.$1.length));
-          }
-          for (var k in o) {
-            if (new RegExp("(" + k + ")").test(fmt)) {
-              fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
-            }
-          }
-          return fmt;
-        }
       }
-    })
-  </script>
+    },
+    filters: {
+      format(val, fmt) {
+        let date = new Date(val)
+        var o = {
+          "M+": date.getMonth() + 1, //月份
+          "d+": date.getDate(), //日
+          "h+": date.getHours(), //小时
+          "m+": date.getMinutes(), //分
+          "s+": date.getSeconds(), //秒
+          "q+": Math.floor((date.getMonth() + 3) / 3), //季度
+          "S": date.getMilliseconds() //毫秒
+        };
+        if (/(y+)/.test(fmt)) {
+          fmt = fmt.replace(RegExp.$1, (date.getFullYear() + "").substr(4 - RegExp.$1.length));
+        }
+        for (var k in o) {
+          if (new RegExp("(" + k + ")").test(fmt)) {
+            fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+          }
+        }
+        return fmt;
+      }
+    }
+  })
+</script>
 </body>
 
 </html>

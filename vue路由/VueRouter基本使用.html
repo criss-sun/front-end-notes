@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="vue.js"></script>
+  <script src="vue-router.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <router-link to="/user">User</router-link>
+    <router-link to="/register">Register</router-link>
+    <router-view></router-view>
+  </div>
+
+  <script>
+    const User = {
+      template: `<div>User组件</div>`
+    }
+
+    const Register = {
+      template: `<div>
+        <div>Register组件</div>
+        <router-link to="/register/register1">Register1</router-link>
+        <router-link to="/register/register2">Register2</router-link>
+        <router-view></router-view>
+        </div>`
+    }
+    const Register1 = {
+      template: `<div>Register1组件</div>`
+    }
+
+    const Register2 = {
+      template: `<div>Register2组件</div>`
+    }
+
+    const app = new Vue({
+      el: '#app',
+      router: new VueRouter({
+        routes: [
+          { path: '/', redirect: '/user' },
+          { path: '/user', component: User },
+          {
+            path: '/register', component: Register,
+            children: [
+              { path: '/register', redirect: '/register/register1'},
+              { path: '/register/register1', component: Register1 },
+              { path: '/register/register2', component: Register2 },
+            ]
+          }
+        ]
+      })
+    })
+  </script>
+</body>
+
+</html>

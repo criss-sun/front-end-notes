@@ -1,7 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9f3ff89c-8d5f-4603-963b-02520a05a492" name="默认更改列表" comment="" />
+    <list default="true" id="9f3ff89c-8d5f-4603-963b-02520a05a492" name="默认更改列表" comment="">
+      <change afterPath="$PROJECT_DIR$/../.idea/图书管理前后端交互.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/books/api_views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../ajax/ajax_test/static/axios的get请求.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ajax/ajax_test/static/axios的get请求.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/book/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/book/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/book/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/book/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/books/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/books/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/books/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/books/serializers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/books/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/books/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/books/views.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/图书管理.html" beforeDir="false" afterPath="$PROJECT_DIR$/static/图书管理.html" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,11 +61,16 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
   <component name="ProjectId" id="1lpKqcfXNMaKSNWzSsY6B1JGrqA" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="DatabaseDriversLRU" value="mysql" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/static" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="terminal" />
   </component>
   <component name="RecentsManager">
@@ -122,10 +140,28 @@
       <updated>1608288784940</updated>
       <workItem from="1608288787546" duration="17304000" />
       <workItem from="1608361745166" duration="15145000" />
+      <workItem from="1608457322482" duration="6535000" />
+      <workItem from="1608535548599" duration="18582000" />
+      <workItem from="1608620467613" duration="10784000" />
+      <workItem from="1608649519341" duration="2383000" />
+      <workItem from="1608807921675" duration="4506000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

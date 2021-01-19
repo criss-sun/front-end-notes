@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="vue.js"></script>
+  <script src="vue-router.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <router-link to="/user/1">User1</router-link>
+    <router-link to="/user/2">User2</router-link>
+    <button @click="jump">跳转到user3</button>
+    <button @click="back">返回</button>
+    <router-view></router-view>
+  </div>
+
+  <script>
+    const User = {
+      props: ['id'],
+      template: `<div>{{ id }}</div>`
+    }
+    const app = new Vue({
+      el: '#app',
+      methods: {
+        jump() {
+          this.$router.push('/user/3')
+        },
+        back() {
+          this.$router.go(-1)
+        }
+      },
+      router: new VueRouter({
+        routes: [
+          { path: '/user/:id', component: User, props: function (route) { return { id: route.params.id } } }
+        ]
+      })
+    })
+  </script>
+</body>
+
+</html>
