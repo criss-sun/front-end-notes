@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    function selectSort(arr) {
+      // 最小数的索引
+      let index
+      for (let k = 0; k < arr.length; k++) {
+        // 每次循环开始index是数组第k位
+        index = k
+        for (let i = k; i < arr.length - 1; i++) {
+          // 如果每次循环数组的 K + 1 位小于数组中的最小数(arr[index]最初是数组第k位)
+          if (arr[i + 1] < arr[index]) {
+            // 保存最小数的索引
+            index = i + 1
+          }
+        }
+        // 
+        // 如果index != k说明index被赋过最小值
+        if (index != k) {
+          const temp = arr[index]
+          arr[index] = arr[k]
+          arr[k] = temp
+        }
+      }
+      return arr
+    }
+    const arr = [1, 10, 2, 1, 3, 11, 6, 1, 5, 4]
+    console.log(arr);
+    const sortedArr = selectSort(arr)
+    console.log(sortedArr);
+  </script>
+</body>
+
+</html>
