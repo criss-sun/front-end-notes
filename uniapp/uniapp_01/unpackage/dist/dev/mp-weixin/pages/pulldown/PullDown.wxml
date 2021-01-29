@@ -1,0 +1,1 @@
+<view class="box data-v-35afbab4"><block wx:for="{{list}}" wx:for-item="item" wx:for-index="__i0__" wx:key="id"><view class="data-v-35afbab4">{{item.name}}</view></block></view>

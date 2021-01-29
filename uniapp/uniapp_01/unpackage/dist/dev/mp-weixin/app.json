@@ -1,0 +1,34 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/message/message",
+    "pages/image/image",
+    "pages/pulldown/PullDown"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationBarBackgroundColor": "#eee",
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "黑叶猴"
+  },
+  "tabBar": {
+    "color": "#333333",
+    "selectedColor": "#FFC0CB",
+    "backgroundColor": "#eee",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "黑叶猴",
+        "iconPath": "static/tabBar/home.png",
+        "selectedIconPath": "static/tabBar/home2.png"
+      },
+      {
+        "pagePath": "pages/message/message",
+        "text": "白叶猴",
+        "iconPath": "static/tabBar/mine.png",
+        "selectedIconPath": "static/tabBar/mine2.png"
+      }
+    ]
+  },
+  "usingComponents": {}
+}

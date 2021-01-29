@@ -1,0 +1,45 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+ul {
+  list-style: none;
+}
+
+.menu-box {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 500px;
+  background-color: #eee;
+}
+
+.menu-box ul {
+  margin-top: 10px;
+}
+
+.menu-box ul h4,
+li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 50px;
+  border: 1px solid #333;
+}
+
+.menu-box ul button {
+  width: 20px;
+  height: 20px;
+}
+
+.js-code {
+  display: block;
+  width: 100%;
+  height: 200px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}

@@ -1,0 +1,56 @@
+{
+  "description": "项目配置文件。",
+  "packOptions": {
+    "ignore": []
+  },
+  "setting": {
+    "urlCheck": false
+  },
+  "compileType": "miniprogram",
+  "libVersion": "",
+  "appid": "touristappid",
+  "projectname": "uniapp_01",
+  "condition": {
+    "search": {
+      "current": -1,
+      "list": []
+    },
+    "conversation": {
+      "current": -1,
+      "list": []
+    },
+    "game": {
+      "current": -1,
+      "list": []
+    },
+    "miniprogram": {
+      "current": 3,
+      "list": [
+        {
+          "name": "home",
+          "query": "name=monkey",
+          "id": 0,
+          "pathName": "pages/index/index"
+        },
+        {
+          "name": "message",
+          "query": "name=monkey",
+          "id": 1,
+          "pathName": "pages/message/message"
+        },
+        {
+          "name": "image",
+          "query": "name=monkey",
+          "id": 2,
+          "pathName": "pages/image/image"
+        },
+        {
+          "name": "pulldown",
+          "query": "name=monkey",
+          "id": 3,
+          "pathName": "pages/pulldown/PullDown"
+        }
+      ]
+    }
+  }
+}

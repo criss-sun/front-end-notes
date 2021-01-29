@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <button>节流</button>
+  <script>
+    // 防抖: 只有用户操作后暂停了一定时间才会执行代码, 用户在这个时间内再次操作会重置时间, 用户操作越快价值越高
+    function debounce(func, delay) {
+      let timer = null;
+      return function (...args) {
+        timer && clearTimeout(timer);
+        timer = setTimeout(function () {
+          func.apply(this, args)
+        }, delay);
+      }
+    }
+    function hitMonkey() {
+      console.log('打猴子');
+    }
+    // debounce(hitMonkey, 500)因为加了括号会立即调用一次, 真正的事件处理函数是这个函数的返回值
+    // document.addEventListener('mousemove', debounce(hitMonkey, 500))
+
+    // 节流: 不管触发了多少次事件, 事件只会在一定时间才会执行一次
+    function throttle(delay) {
+      let timer
+      return function () {
+        if (!timer) {
+          timer = setTimeout(function () {
+            console.log(123);
+            timer = null
+          }, delay);
+        }
+      }
+    }
+    const btn = document.querySelector('button')
+    btn.addEventListener('click', throttle(1000))
+  </script>
+</body>
+
+</html>
