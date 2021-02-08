@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    const arr = [1, 2, 3, 4, 5]
+    const result = arr.reduce(function (prev, cur, index, arr) {
+      // prev的值是return的结果, 如果有默认值第一次会使用默认值, 如果没有给默认值, 第一次会使用数组中第一个元素
+      console.log(prev);
+      // cur的值表示数组中每一项的值, 如果prev没有给默认值, 第一次的值是数组的第二个元素
+      console.log(cur);
+      console.log("-");
+      // return的结果是prev的值
+      return prev + cur
+      // 0是prev第一次的值
+    }, 2)
+    console.log(result);
+  </script>
+</body>
+
+</html>
