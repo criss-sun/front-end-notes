@@ -33,8 +33,14 @@
           template: `
           <div>
             <button @click="$emit('add-font-size', 'param')">发送自定义事件</button>
+            <button @click="send">发送自定义事件</button>
           </div>
-          `
+          `,
+          methods: {
+            send() {
+              this.$emit('add-font-size', 'param')
+            }
+          }
         }
       }
     })
