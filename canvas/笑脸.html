@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+
+    #canvas {
+      margin: 100px auto;
+    }
+  </style>
+</head>
+
+<body>
+  <img src="">
+  <canvas id="canvas" width="300" height="300"></canvas>
+  <script>
+    const canvas = document.querySelector('#canvas')
+    const ctx = canvas.getContext('2d')
+    // 边框
+    ctx.strokeRect(0, 0, 300, 300)
+    ctx.beginPath();
+    ctx.arc(75, 75, 50, 0, Math.PI * 2, true); // 绘制
+    ctx.moveTo(110, 75);
+    ctx.arc(75, 75, 35, 0, Math.PI, false);   // 口(顺时针)
+    ctx.moveTo(65, 65);
+    ctx.arc(60, 65, 5, 0, Math.PI * 2, true);  // 左眼
+    ctx.moveTo(95, 65);
+    ctx.arc(90, 65, 5, 0, Math.PI * 2, true);  // 右眼
+    ctx.stroke();
+    // console.log(canvas.toDataURL());
+    canvas.toBlob(function (blob) {
+      const url = URL.createObjectURL(blob)
+      const img = document.createElement('img')
+      img.addEventListener('load', () => {
+        URL.revokeObjectURL(url)
+      })
+      img.src = url;
+      document.body.appendChild(img);
+    })
+
+  </script>
+</body>
+
+</html>

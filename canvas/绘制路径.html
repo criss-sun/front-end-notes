@@ -23,6 +23,8 @@
   <script>
     const canvas = document.querySelector('#canvas')
     const ctx = canvas.getContext('2d')
+    // 边框
+    ctx.strokeRect(0, 0, 300, 300)
     ctx.beginPath();
     ctx.moveTo(75, 50);
     ctx.lineTo(100, 75);

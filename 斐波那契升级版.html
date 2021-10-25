@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function fbnq(num) {
+            if (num == 1 || num == 2) {
+                return 1
+            } else if (num == 3) {
+                return 2
+            }
+            return fbnq(num - 1) + fbnq(num - 2) + fbnq(num - 3)
+        }
+        console.log(fbnq(5));
+    </script>
+</body>
+
+</html>

@@ -1,30 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <style>
+    .header {
+      height: 800px;
+      background-color: skyblue;
+    }
+
     @keyframes move {
       0% {
         transform: translateX(0);
       }
-      100% {
+
+      25% {
         transform: translateX(1700px);
+        width: 20px;
+        height: 200px;
       }
-      /* 50% {
+
+      50% {
         transform: translate(1720px, 700px);
       }
+
       75% {
         transform: translate(0, 700px);
       }
+
       100% {
         transform: translateY(0);
-      } */
+      }
     }
 
-    div {
-      height: 200px;
+    .move-box {
+      height: 20px;
       width: 200px;
       background-color: pink;
       /* animation-name: move;
@@ -34,7 +46,7 @@
       animation-iteration-count: 3;
       animation-direction: alternate;
       animation-fill-mode: forwards; */
-      animation: move 2s linear 1s infinite alternate;
+      animation: move 2s linear 1s infinite;
     }
 
     div:hover {
@@ -42,7 +54,11 @@
     }
   </style>
 </head>
+
 <body>
-  <div></div>
+  <div class="header">
+    <div class="move-box"></div>
+  </div>
 </body>
+
 </html>

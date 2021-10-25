@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue底层原理核心代码</title>
+</head>
+
+<body>
+    <div id="app"></div>
+    <script>
+        let data = { num: 0 }
+        let active
+        //这行开始vue的响应式 内部逻辑核心代码学习
+        function xiangyingshi(data) {
+            console.log('这里开始核心逻辑了')
+            for (let key in data) {
+                let value = data[key] //对象对应的值
+                let dep = []
+                Object.defineProperty(data, key, {
+                    get() {
+                        console.log('我进入Object.defineProperty get里面了')
+                        if (active) {
+                            dep.push(active)
+                        }
+                        return value
+                    },
+                    set(newValue) {
+                        console.log('我进入Object.defineProperty set里面了')
+                        value = newValue
+                        dep.forEach(function (watcher) {
+                            watcher()
+                        })
+                    }
+                })
+            }
+        }
+        xiangyingshi(data)
+        function watcher(fn) {
+            active = fn
+            fn()
+            active = null
+        }
+        watcher(function () {
+            app.innerHTML = data.num
+        })
+        watcher(function () {
+            console.log(data.num)
+        })
+    </script>
+</body>
+
+</html>

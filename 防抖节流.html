@@ -16,6 +16,7 @@
       return function (...args) {
         timer && clearTimeout(timer);
         timer = setTimeout(function () {
+          // args是事件对象event
           func.apply(this, args)
         }, delay);
       }
@@ -24,7 +25,7 @@
       console.log('打猴子');
     }
     // debounce(hitMonkey, 500)因为加了括号会立即调用一次, 真正的事件处理函数是这个函数的返回值
-    // document.addEventListener('mousemove', debounce(hitMonkey, 500))
+    document.addEventListener('mousemove', debounce(hitMonkey, 500))
 
     // 节流: 不管触发了多少次事件, 事件只会在一定时间才会执行一次
     function throttle(delay) {

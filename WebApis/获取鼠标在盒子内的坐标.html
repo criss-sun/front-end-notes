@@ -7,7 +7,6 @@
   <title>Document</title>
   <style>
     div {
-      /* position: relative; */
       margin: 100px auto;
       width: 500px;
       height: 500px;
@@ -29,6 +28,7 @@
   <script>
     var box = document.querySelector('.box')
     box.addEventListener('mousemove', function (e) {
+      console.log(e.pageX);
       console.log(e.pageX - box.offsetLeft, e.pageY - box.offsetTop);
       // console.log(e.offsetX, e.offsetY);
     })
